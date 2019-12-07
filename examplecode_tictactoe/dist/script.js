@@ -1,19 +1,29 @@
 // https://babeljs.io/repl for better comparison (JSX <> polyfilled JS)
+// and of course, the CodePens along with the tutorial (side-by-side check!)
 
 class Square extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null,
+    };
+  }
+
   render() {
     return React.createElement(
       'button',
       {
-        // className="square"
+        // JSX: className='square'
         className: 'square',
 
-        // onClick={() => alert('clicked!')}
-        onClick: function() {
-          alert('clicked!');
-        },
+        // JSX: onClick={() => alert('clicked!')}
+        // NOTE: do not use `function() {}`, use arrow func!
+        onClick: () =>
+          this.setState({
+            value: 'X',
+          }),
       },
-      this.props.value
+      this.state.value
     );
   }
 }
