@@ -4,7 +4,15 @@ class Square extends React.Component {
   render() {
     return React.createElement(
       'button',
-      { className: 'square' },
+      {
+        // className="square"
+        className: 'square',
+
+        // onClick={() => alert('clicked!')}
+        onClick: function() {
+          alert('clicked!');
+        },
+      },
       this.props.value
     );
   }
