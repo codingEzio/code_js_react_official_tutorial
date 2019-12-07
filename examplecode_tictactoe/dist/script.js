@@ -1,40 +1,48 @@
+// https://babeljs.io/repl for better comparison (JSX <> polyfilled JS)
+
 class Square extends React.Component {
   render() {
-    return React.createElement("button", { className: "square" });
+    return React.createElement(
+      'button',
+      { className: 'square' },
+      this.props.value
+    );
   }
 }
 
 class Board extends React.Component {
   renderSquare(i) {
-    return React.createElement(Square, null);
+    return React.createElement(Square, {
+      value: i,
+    });
   }
 
   render() {
-    const status = "Next player: X";
+    const status = 'Next player: X';
 
     return React.createElement(
-      "div",
+      'div',
       null,
-      React.createElement("div", { className: "status" }, status),
+      React.createElement('div', { className: 'status' }, status),
       React.createElement(
-        "div",
-        { className: "board-row" },
+        'div',
+        { className: 'board-row' },
         this.renderSquare(0),
         this.renderSquare(1),
         this.renderSquare(2)
       ),
 
       React.createElement(
-        "div",
-        { className: "board-row" },
+        'div',
+        { className: 'board-row' },
         this.renderSquare(3),
         this.renderSquare(4),
         this.renderSquare(5)
       ),
 
       React.createElement(
-        "div",
-        { className: "board-row" },
+        'div',
+        { className: 'board-row' },
         this.renderSquare(6),
         this.renderSquare(7),
         this.renderSquare(8)
@@ -46,19 +54,19 @@ class Board extends React.Component {
 class Game extends React.Component {
   render() {
     return React.createElement(
-      "div",
-      { className: "game" },
+      'div',
+      { className: 'game' },
       React.createElement(
-        "div",
-        { className: "game-board" },
+        'div',
+        { className: 'game-board' },
         React.createElement(Board, null)
       ),
 
       React.createElement(
-        "div",
-        { className: "game-info" },
-        React.createElement("div", null),
-        React.createElement("ol", null)
+        'div',
+        { className: 'game-info' },
+        React.createElement('div', null),
+        React.createElement('ol', null)
       )
     );
   }
@@ -68,5 +76,5 @@ class Game extends React.Component {
 
 ReactDOM.render(
   React.createElement(Game, null),
-  document.getElementById("root")
+  document.getElementById('root')
 );
