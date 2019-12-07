@@ -2,6 +2,7 @@
 // and of course, the CodePens along with the tutorial (side-by-side check!)
 
 class Square extends React.Component {
+  // TODO: remove the constructor
   constructor(props) {
     super(props);
     this.state = {
@@ -10,6 +11,8 @@ class Square extends React.Component {
   }
 
   render() {
+    // TODO: use `onClick={this.props.onClick}`
+    // TODO: replace `this.state.value` with `this.props.value`
     return React.createElement(
       'button',
       {
@@ -29,9 +32,17 @@ class Square extends React.Component {
 }
 
 class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // initialize with 9 blank squares
+      squares: Array(9).fill(null),
+    };
+  }
+
   renderSquare(i) {
     return React.createElement(Square, {
-      value: i,
+      value: this.state.squares[i],
     });
   }
 
