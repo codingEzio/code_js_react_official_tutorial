@@ -38,6 +38,14 @@ class Board extends React.Component {
     };
   }
 
+  handleClick(i) {
+    // a copy of 'squares' || intial 'squares' with 9 'null's
+    const squares = this.state.squares.slice();
+    // make actual changes to the 'squares' in `constructor` func
+    squares[i] = 'X';
+    this.setState({ squares: squares });
+  }
+
   renderSquare(i) {
     return React.createElement(Square, {
       value: this.state.squares[i],
