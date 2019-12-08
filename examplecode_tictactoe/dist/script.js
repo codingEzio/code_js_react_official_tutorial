@@ -126,7 +126,9 @@ class Game extends React.Component {
 
       return React.createElement(
         'li',
-        null,
+        {
+          key: move,
+        },
         React.createElement(
           'button',
           {
