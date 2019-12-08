@@ -1,31 +1,30 @@
 // https://babeljs.io/repl for better comparison (JSX <> polyfilled JS)
 // and of course, the CodePens along with the tutorial (side-by-side check!)
 
-class Square extends React.Component {
-  render() {
-    // This 'square' component is now being "managed" by
-    // (parent) component 'Board', i.e. props (val & event).
-    return React.createElement(
-      'button',
-      {
-        // JSX: className='square'
-        className: 'square',
+// This is a simpler way to write (in cmp to `.. .. extends ..`)
+// components that only cotain a `render` method and DON'T have
+// their own state (in our case, it'll be managed by `Board`).
+function Square(props) {
+  // This 'square' component is now being "managed" by
+  // (parent) component 'Board', i.e. props (val & event).
+  return React.createElement(
+    'button',
+    {
+      // JSX: className='square'
+      className: 'square',
 
-        // JSX: onClick={() => alert('clicked!')}
-        // NOTE: do not use `function() {}`, use arrow func!
-        onClick: () =>
-          // The `props` was passed in from `Board`, so the
-          // event/behavior was actually done/implemented by
-          // the parent component 'Board' (aka. `handleClick`)
-          this.props.onClick({
-            value: 'X',
-          }),
-      },
-      // Similar to 'this.props.onClick', the `value` serves as
-      // a placeholder for parent 'Board' to pass into :)
-      this.props.value
-    );
-  }
+      // JSX: onClick={() => alert('clicked!')}
+      // NOTE: do not use `function() {}`, use arrow func!
+      onClick:
+        // The `props` was passed in from `Board`, so the
+        // event/behavior was actually done/implemented by
+        // the parent component 'Board' (aka. `handleClick`)
+        props.onClick,
+    },
+    // Similar to 'this.props.onClick', the `value` serves as
+    // a placeholder for parent 'Board' to pass into :)
+    props.value
+  );
 }
 
 class Board extends React.Component {
