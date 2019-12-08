@@ -28,17 +28,7 @@ function Square(props) {
 }
 
 class Board extends React.Component {
-  // Now 'Board' handles the state instead of 'Square's themselves.
-  constructor(props) {
-    super(props);
-    this.state = {
-      // initialize with 9 blank squares
-      squares: Array(9).fill(null),
-      // set initial state to be 'X'
-      xIsNext: true,
-    };
-  }
-
+  // Now the actual charge of `props` is `Game` component
   handleClick(i) {
     // a copy of 'squares' || intial 'squares' with 9 'null's
     const squares = this.state.squares.slice();
@@ -60,8 +50,8 @@ class Board extends React.Component {
 
   renderSquare(i) {
     return React.createElement(Square, {
-      value: this.state.squares[i],
-      onClick: () => this.handleClick(i),
+      value: this.props.squares[i],
+      onClick: () => this.props.handleClick(i),
     });
   }
 
@@ -106,6 +96,19 @@ class Board extends React.Component {
 }
 
 class Game extends React.Component {
+  // Now 'Game' handles the state (Game -> Board -> Square)
+  constructor(props) {
+    super(props);
+    this.state = {
+      history: [
+        {
+          squares: Array(9).fill(null),
+        },
+      ],
+      xIsNext: true,
+    };
+  }
+
   render() {
     return React.createElement(
       'div',
