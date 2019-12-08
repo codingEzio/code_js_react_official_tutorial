@@ -29,24 +29,6 @@ function Square(props) {
 
 class Board extends React.Component {
   // Now `Game` is in charge of `Board`.
-  handleClick(i) {
-    // a copy of 'squares' || intial 'squares' with 9 'null's
-    const squares = this.state.squares.slice();
-
-    // pass
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-
-    this.setState({
-      // update modified `squares` (intial => filled with 'X')
-      squares: squares,
-      // flip true|false to determine which player goes next
-      xIsNext: !this.state.xIsNext,
-    });
-  }
 
   renderSquare(i) {
     return React.createElement(Square, {
@@ -102,6 +84,33 @@ class Game extends React.Component {
       ],
       xIsNext: true,
     };
+  }
+
+  handleClick(i) {
+    const history = this.state.history;
+    const current = history[history.length - 1];
+    const squares = current.squares.slice();
+
+    // Turn the individual 'Square' into irresponsive
+    // after somebody wins or squares already being filled
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
+
+    this.setState({
+      // A giant array that holds different 'squares' from
+      // different timelines, like [ {sqr}, {sqr}, .. , {sqr} ].
+      history: history.concat([
+        {
+          // update changed `squares` (either 'X' or 'O')
+          squares: squares,
+        },
+      ]),
+      // flip true|false to determine which player goes next
+      xIsNext: !this.state.xIsNext,
+    });
   }
 
   render() {
