@@ -28,7 +28,7 @@ function Square(props) {
 }
 
 class Board extends React.Component {
-  // Now the actual charge of `props` is `Game` component
+  // Now `Game` is in charge of `Board`.
   handleClick(i) {
     // a copy of 'squares' || intial 'squares' with 9 'null's
     const squares = this.state.squares.slice();
@@ -56,18 +56,13 @@ class Board extends React.Component {
   }
 
   render() {
-    const winner = calculateWinner(this.state.squares);
-    let status;
-    if (winner) {
-      status = `Winner: ${winner}`;
-    } else {
-      status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
-    }
-
+    // Now the 'calc the winner' process was moved to `Game`,
+    // since we'll have a new feature (time machine) that is
+    // mostly implemented in `Game`.
     return React.createElement(
       'div',
       null,
-      React.createElement('div', { className: 'status' }, status),
+      // Now `Board` is no longer displaying 'X|O' status.
       React.createElement(
         'div',
         { className: 'board-row' },
@@ -110,19 +105,35 @@ class Game extends React.Component {
   }
 
   render() {
+    const history = this.state.history;
+    const current = history[history.length - 1]; // latest hist
+    const winner = calculateWinner(current.squares);
+
+    let status;
+    if (winner) {
+      status = `Winner: ${winner}`;
+    } else {
+      status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
+    }
+
     return React.createElement(
       'div',
       { className: 'game' },
       React.createElement(
         'div',
         { className: 'game-board' },
-        React.createElement(Board, null)
+        React.createElement(Board, {
+          // Hold the state & handle the click
+          squares: current.squares,
+          onClick: i => this.handleClick(i),
+        })
       ),
 
       React.createElement(
         'div',
         { className: 'game-info' },
-        React.createElement('div', null),
+        // display game status (WIN | Next-is-X-or-Y)
+        React.createElement('div', null, status),
         React.createElement('ol', null)
       )
     );
