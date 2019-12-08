@@ -118,6 +118,25 @@ class Game extends React.Component {
     const current = history[history.length - 1]; // latest hist
     const winner = calculateWinner(current.squares);
 
+    // Show the past moves
+    const moves = history.map((step, move) => {
+      const descend = move
+        ? 'Go to move #' + move
+        : 'Go to game start';
+
+      return React.createElement(
+        'li',
+        null,
+        React.createElement(
+          'button',
+          {
+            onClick: () => this.jumpTo(move),
+          },
+          descend
+        )
+      );
+    });
+
     let status;
     if (winner) {
       status = `Winner: ${winner}`;
@@ -143,7 +162,7 @@ class Game extends React.Component {
         { className: 'game-info' },
         // display game status (WIN | Next-is-X-or-Y)
         React.createElement('div', null, status),
-        React.createElement('ol', null)
+        React.createElement('ol', null, moves)
       )
     );
   }
