@@ -34,15 +34,23 @@ class Board extends React.Component {
     this.state = {
       // initialize with 9 blank squares
       squares: Array(9).fill(null),
+      // set initial state to be 'X'
+      xIsNext: true,
     };
   }
 
   handleClick(i) {
     // a copy of 'squares' || intial 'squares' with 9 'null's
     const squares = this.state.squares.slice();
-    // make actual changes to the 'squares' in `constructor` func
-    squares[i] = 'X';
-    this.setState({ squares: squares });
+
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
+
+    this.setState({
+      // update modified `squares` (intial => filled with 'X')
+      squares: squares,
+      // flip true|false to determine which player goes next
+      xIsNext: !this.state.xIsNext,
+    });
   }
 
   renderSquare(i) {
@@ -53,7 +61,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: X';
+    const status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
 
     return React.createElement(
       'div',
