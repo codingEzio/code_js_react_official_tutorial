@@ -33,7 +33,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return React.createElement(Square, {
       value: this.props.squares[i],
-      onClick: () => this.props.handleClick(i),
+      onClick: () => this.props.onClick(i),
     });
   }
 
@@ -82,14 +82,21 @@ class Game extends React.Component {
           squares: Array(9).fill(null),
         },
       ],
+      stepNumber: 0,
       xIsNext: true,
     };
   }
 
   handleClick(i) {
-    const history = this.state.history;
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
+    // when we jump back to previous X step(s), it "drops" all
+    // the unnecessary "future" `history` ('ll be incorrect if doesn't)
+    const history = this.state.history.slice(
+      0,
+      this.state.stepNumber + 1
+    );
+
+    const current = history[history.length - 1]; // current pos
+    const squares = current.squares.slice(); // a copy for being modified
 
     // Turn the individual 'Square' into irresponsive
     // after somebody wins or squares already being filled
@@ -108,14 +115,22 @@ class Game extends React.Component {
           squares: squares,
         },
       ]),
+      stepNumber: history.length,
       // flip true|false to determine which player goes next
       xIsNext: !this.state.xIsNext,
     });
   }
 
+  jumpTo(step) {
+    this.setState({
+      stepNumber: step,
+      xIsNext: step % 2 === 0,
+    });
+  }
+
   render() {
     const history = this.state.history;
-    const current = history[history.length - 1]; // latest hist
+    const current = history[this.state.stepNumber]; // latest OR prev-step
     const winner = calculateWinner(current.squares);
 
     // Show the past moves
