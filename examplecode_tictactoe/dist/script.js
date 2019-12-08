@@ -121,3 +121,27 @@ ReactDOM.render(
   React.createElement(Game, null),
   document.getElementById('root')
 );
+
+function calculateWinner(squares) {
+  const all_possible_win_combos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < all_possible_win_combos.length; i++) {
+    const [a, b, c] = all_possible_win_combos[i];
+    if (
+      squares[a] &&
+      squares[a] === squares[b] &&
+      squares[a] === squares[c]
+    ) {
+      return squares[a];
+    }
+  }
+  return null;
+}
