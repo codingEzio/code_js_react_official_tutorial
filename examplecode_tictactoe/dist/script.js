@@ -2,17 +2,9 @@
 // and of course, the CodePens along with the tutorial (side-by-side check!)
 
 class Square extends React.Component {
-  // TODO: remove the constructor
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-    };
-  }
-
   render() {
-    // TODO: use `onClick={this.props.onClick}`
-    // TODO: replace `this.state.value` with `this.props.value`
+    // This 'square' component is now being "managed" by
+    // (parent) component 'Board', i.e. props (val & event).
     return React.createElement(
       'button',
       {
@@ -22,16 +14,22 @@ class Square extends React.Component {
         // JSX: onClick={() => alert('clicked!')}
         // NOTE: do not use `function() {}`, use arrow func!
         onClick: () =>
-          this.setState({
+          // The `props` was passed in from `Board`, so the
+          // event/behavior was actually done/implemented by
+          // the parent component 'Board' (aka. `handleClick`)
+          this.props.onClick({
             value: 'X',
           }),
       },
-      this.state.value
+      // Similar to 'this.props.onClick', the `value` serves as
+      // a placeholder for parent 'Board' to pass into :)
+      this.props.value
     );
   }
 }
 
 class Board extends React.Component {
+  // Now 'Board' handles the state instead of 'Square's themselves.
   constructor(props) {
     super(props);
     this.state = {
@@ -43,6 +41,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return React.createElement(Square, {
       value: this.state.squares[i],
+      onClick: () => this.handleClick(i),
     });
   }
 
