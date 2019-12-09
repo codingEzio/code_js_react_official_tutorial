@@ -21,6 +21,9 @@
         // Lifecycle :: 1st
         constructor(props) {
           super(props);
+
+          // You CAN'T `this.state.KEY = 'VAL'`
+          // You CAN   `this.setState({ KEY : 'VAL' })`
           this.state = { date: new Date() };
         }
 
