@@ -20,13 +20,24 @@
       function formatName(person) {
         return `${person.firstName} ${person.lastName}`;
       }
+
+      function getGreeting(person) {
+        if (person) {
+          return <h1>Hello, {formatName(person)}</h1>;
+        } else {
+          return <h1>Hello, Stranger.</h1>;
+        }
+      }
+
       const champion = {
         firstName: 'Irelia',
         lastName: 'Lito',
       };
-      const greeting = <h1>Hello, {formatName(champion)}</h1>;
 
-      ReactDOM.render(greeting, document.getElementById('root'));
+      ReactDOM.render(
+        getGreeting(champion),
+        document.getElementById('root')
+      );
     </script>
   </body>
 </html>
