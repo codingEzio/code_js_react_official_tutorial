@@ -59,7 +59,18 @@
         'Hello elem in Object!'
       );
 
-      ReactDOM.render(elem_in_Obj, document.getElementById('root'));
+      function tick() {
+        const elem = (
+          <div>
+            <h1>Hello World!</h1>
+            <p>It is {new Date().toLocaleTimeString()}.</p>
+          </div>
+        );
+        // In practice, most React apps only call this once.
+        ReactDOM.render(elem, document.getElementById('root'));
+      }
+
+      setInterval(tick, 100);
     </script>
   </body>
 </html>
