@@ -18,11 +18,32 @@
 
     <script type="text/babel">
       class Clock extends React.Component {
+        // Lifecycle :: 1st
         constructor(props) {
           super(props);
           this.state = { date: new Date() };
         }
 
+        // Lifecycle :: 3nd helper
+        tick() {
+          this.setState({
+            date: new Date(),
+          });
+        }
+
+        // Lifecycle :: 3nd
+        componentDidMount() {
+          // run `tick()` once a second
+          this.timerID = setInterval(() => this.tick(), 1000);
+        }
+
+        // Lifecycle :: the end
+        componentWillUnmount() {
+          clearInterval(this.timerID);
+        }
+
+        // Lifecycle :: 2nd
+        // Lifecycle :: 2nd interact 3rd ( loop (1s -> re-render) )
         render() {
           return (
             <div>
