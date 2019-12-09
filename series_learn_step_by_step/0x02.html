@@ -17,20 +17,30 @@
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
 
     <script type="text/babel">
+      // Always start component names with a CAPITAL letter!
       function WelcomeInFunc(props) {
-        return <h1>Hello, {props.name}</h1>;
+        return <p>Hello, {props.name}</p>;
       }
 
       class Welcome extends React.Component {
         render() {
-          return <h1>Hello, {this.props.name}</h1>;
+          return <p>Hello, {this.props.name}</p>;
         }
+      }
+
+      function ListOfGreetings() {
+        return (
+          <div>
+            <Welcome name="Alexander" />
+            <Welcome name="Alex" />
+            <Welcome name="Ann" />
+          </div>
+        );
       }
 
       ReactDOM.render(
         <div>
-          <Welcome name="Josh" />
-          <WelcomeInFunc name="Josh" />
+          <ListOfGreetings />
         </div>,
         document.getElementById('root')
       );
