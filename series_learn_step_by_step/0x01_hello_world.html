@@ -34,10 +34,32 @@
         lastName: 'Lito',
       };
 
-      ReactDOM.render(
-        getGreeting(champion),
-        document.getElementById('root')
+      // JSX is more like JavaScript than HTML, so for attributes
+      // like 'tabindex' should be written as 'tabIndex' (aka camelCase).
+      const male_icon = (
+        <div tabIndex="0">
+          <img src="https://img.icons8.com/pastel-glyph/person-male.png" />
+        </div>
       );
+
+      const elem_with_children = (
+        <div>
+          <h1>Hell yeah</h1>
+          <h2>Hell yeah</h2>
+        </div>
+      );
+
+      // TAG, {ATTRS (>=1) }, VALUES (>=1)
+      const elem_in_JSX = (
+        <h1 className="greeting">Hello elem in JSX!</h1>
+      );
+      const elem_in_Obj = React.createElement(
+        'h1',
+        { className: 'greeting' },
+        'Hello elem in Object!'
+      );
+
+      ReactDOM.render(elem_in_Obj, document.getElementById('root'));
     </script>
   </body>
 </html>
