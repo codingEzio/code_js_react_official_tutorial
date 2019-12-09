@@ -17,8 +17,15 @@
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
 
     <script type="text/babel">
-      const name = 'Irelia Lito';
-      const greeting = <h1>Hello {name}!</h1>;
+      function formatName(person) {
+        return `${person.firstName} ${person.lastName}`;
+      }
+      const champion = {
+        firstName: 'Irelia',
+        lastName: 'Lito',
+      };
+      const greeting = <h1>Hello, {formatName(champion)}</h1>;
+
       ReactDOM.render(greeting, document.getElementById('root'));
     </script>
   </body>
