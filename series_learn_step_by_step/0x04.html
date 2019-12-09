@@ -17,14 +17,17 @@
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
 
     <script type="text/babel">
-      function Clock(props) {
-        return (
-          <div>
-            <h3>Hello, React!</h3>
-            <p>It is {props.date.toLocaleTimeString()}</p>
-          </div>
-        );
+      class Clock extends React.Component {
+        render() {
+          return (
+            <div>
+              <h3>Hello, React!</h3>
+              <p>It is {this.props.date.toLocaleTimeString()}</p>
+            </div>
+          );
+        }
       }
+
       function tick() {
         ReactDOM.render(
           <Clock date={new Date()} />,
