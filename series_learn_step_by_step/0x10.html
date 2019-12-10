@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Yello #10</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <!-- 
+      In HTML, form elements like `<input>`, `<textarea>` and `<select>`
+      typically maintain their own state and update it based on user input.
+
+      As for React, mutable states is kept in the `state` property of comp, 
+      and only updated with `setState()`. The term "controlled components"
+      means for the "render & val-control", they were both managed by React.
+     -->
+    <form>
+      <label>
+        Name:
+        <input type="text" name="name" />
+      </label>
+      <input type="submit" value="submit" />
+    </form>
+
+    <script type="text/babel"></script>
+  </body>
+</html>
