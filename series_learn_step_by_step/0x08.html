@@ -17,12 +17,22 @@
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
 
     <script type="text/babel">
+      function ListItem(props) {
+        // Keys shouldn't be specified here, it's "single"!
+        return <li>{props.value}</li>;
+      }
+
+      // Most often you'd use IDs from your data as keys.
+      // Indexes are "okay", but definitely NOT recommended,
+      // it might cause "get wrong data" & performance issues.
       function NumberList(props) {
-        // Most often you'd use IDs from your data as keys.
-        // Indexes are "okay", but definitely NOT recommended,
-        // it might cause "get wrong data" & performance issues.
+        const numbers = props.numbers;
+
+        // A rule of thumb: elems inside the `map` call NEED keys.
         const listItems = numbers.map(num => (
-          <li key={num.toString()}>{num}</li>
+          // The `key` should specified inside the "array", kinda like
+          // "giving" it an index.
+          <ListItem key={num.toString()} value={num} />
         ));
 
         return <ul>{listItems}</ul>;
