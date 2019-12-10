@@ -43,7 +43,14 @@
           //    this method to the current object/class `Toggle` :)
           this.handleClick = this.handleClick.bind(this);
         }
+
+        // Just a reminder for myself, what this arrow func returns
+        // is actually still '{ KEY: "VAL" }' kind of format, as for
+        // more complex one that involved 'props', simply add `prop`
+        // like this `(state, props) => ({..})`. Not so complicated, right?
         handleClick() {
+          // This method <merges> the object you provided, as for this
+          // one, it ONLY updates the value of `isToggleOn`, JUST him.
           this.setState(state => ({
             isToggleOn: !state.isToggleOn,
           }));
