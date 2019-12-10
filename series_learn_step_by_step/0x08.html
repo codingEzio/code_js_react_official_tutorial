@@ -17,11 +17,20 @@
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
 
     <script type="text/babel">
-      const numbers = [3, 5, 7, 9, 11];
-      const listItems = numbers.map(num => <li>NUM: {num}</li>);
+      function NumberList(props) {
+        // Most often you'd use IDs from your data as keys.
+        // Indexes are "okay", but definitely NOT recommended,
+        // it might cause "get wrong data" & performance issues.
+        const listItems = numbers.map(num => (
+          <li key={num.toString()}>{num}</li>
+        ));
 
+        return <ul>{listItems}</ul>;
+      }
+
+      const numbers = [3, 5, 7, 9, 11];
       ReactDOM.render(
-        <ul>{listItems}</ul>,
+        <NumberList numbers={numbers} />,
         document.getElementById('root')
       );
     </script>
