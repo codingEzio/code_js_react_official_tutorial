@@ -77,6 +77,10 @@
             <div>
               <Greeting isLoggedIn={isLoggedIn} />
               {button}
+              <div>
+                The user is <b>{isLoggedIn ? 'currently' : 'not'}</b>
+                &nbsp;logged in.
+              </div>
             </div>
           );
         }
