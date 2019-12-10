@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Yello #6</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      function UserGreeting(props) {
+        return <h3>Welcome back!</h3>;
+      }
+      function GuestGreeting(props) {
+        return <h3>Please sign up first.</h3>;
+      }
+      function Greeting(props) {
+        const isLoggedIn = props.isLoggedIn;
+        if (isLoggedIn) {
+          return <UserGreeting />;
+        }
+        return <GuestGreeting />;
+      }
+
+      ReactDOM.render(
+        <div>
+          <Greeting isLoggedIn={false} />
+          <Greeting isLoggedIn={true} />
+        </div>,
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>
