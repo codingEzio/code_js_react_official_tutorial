@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Yello #4</title>
+    <title>Yello #5</title>
   </head>
   <body>
     <div id="root"></div>
@@ -30,10 +30,35 @@
         );
       }
 
-      ReactDOM.render(
-        <ActionLink />,
-        document.getElementById('root')
-      );
+      class Toggle extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { isToggleOn: true };
+
+          // Q: Why we need to `bind` 'this'
+          // A: Class method in JavaScript are NOT bound by default.
+          //    From the perspective of execution, what we does is to
+          //    make sure the `this.handleClick` is still available
+          //    when the context is different. This `this` "binds"
+          //    this method to the current object/class `Toggle` :)
+          this.handleClick = this.handleClick.bind(this);
+        }
+        handleClick() {
+          this.setState(state => ({
+            isToggleOn: !state.isToggleOn,
+          }));
+        }
+
+        render() {
+          return (
+            <button onClick={this.handleClick}>
+              {this.state.isToggleOn ? 'ON 🙂' : 'OFF 🙃'}
+            </button>
+          );
+        }
+      }
+
+      ReactDOM.render(<Toggle />, document.getElementById('root'));
     </script>
   </body>
 </html>
