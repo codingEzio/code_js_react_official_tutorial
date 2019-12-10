@@ -41,23 +41,24 @@
           //    make sure the `this.handleClick` is still available
           //    when the context is different. This `this` "binds"
           //    this method to the current object/class `Toggle` :)
-          this.handleClick = this.handleClick.bind(this);
+          // this.handleClick = this.handleClick.bind(this);
         }
 
         // Just a reminder for myself, what this arrow func returns
         // is actually still '{ KEY: "VAL" }' kind of format, as for
         // more complex one that involved 'props', simply add `prop`
         // like this `(state, props) => ({..})`. Not so complicated, right?
-        handleClick() {
+        handleClick = () => {
           // This method <merges> the object you provided, as for this
           // one, it ONLY updates the value of `isToggleOn`, JUST him.
           this.setState(state => ({
             isToggleOn: !state.isToggleOn,
           }));
-        }
+        };
 
         render() {
           return (
+            // <button onClick={this.METHOD.bind(this, PARAMs)}>
             <button onClick={this.handleClick}>
               {this.state.isToggleOn ? 'ON 🙂' : 'OFF 🙃'}
             </button>
