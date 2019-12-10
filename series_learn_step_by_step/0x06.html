@@ -65,6 +65,7 @@
           const isLoggedIn = this.state.isLoggedIn;
           let button;
 
+          // Currently this wasn't being used (inline JSX does itself now).
           if (isLoggedIn) {
             button = (
               <LogoutButton onClick={this.handleLogoutClick} />
@@ -76,7 +77,14 @@
           return (
             <div>
               <Greeting isLoggedIn={isLoggedIn} />
-              {button}
+              <div>
+                {isLoggedIn ? (
+                  <LogoutButton onClick={this.handleLogoutClick} />
+                ) : (
+                  <LoginButton onClick={this.handleLoginClick} />
+                )}
+              </div>
+
               <div>
                 The user is <b>{isLoggedIn ? 'currently' : 'not'}</b>
                 &nbsp;logged in.
