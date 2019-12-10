@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Yello #9</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      function Blog(props) {
+        // Just saying, the `key`s serve as a hint to React, but they
+        // don't get passed to your components. If you do need the same
+        // value in your comp, pass it like this: `ANYTHING_ELSE={post.id}`.
+        const sidebar = (
+          <ul>
+            {props.posts.map(single_post => (
+              <li key={single_post.id}>{single_post.title}</li>
+            ))}
+          </ul>
+        );
+
+        // Keys used within array should be unique among their siblings.
+        // Just like when you looping [1,2,3], you'll never get the '1'
+        // more than once. It does NOT need to be GLOBALLY uniqued :D
+        const content = props.posts.map(single_post => (
+          <div key={single_post.id}>
+            <h3>{single_post.title}</h3>
+            <p>{single_post.content}</p>
+          </div>
+        ));
+
+        return (
+          <div>
+            {sidebar}
+            <hr />
+            {content}
+          </div>
+        );
+      }
+
+      const posts = [
+        { id: 1, title: 'Hail Vue', content: 'Vue is GREAT' },
+        { id: 2, title: 'Hail React', content: 'React is GREAT' },
+        { id: 3, title: 'Hail Angular', content: 'Angular is GREAT' },
+      ];
+      ReactDOM.render(
+        <Blog posts={posts} />,
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>
