@@ -38,9 +38,25 @@
         return <ul>{listItems}</ul>;
       }
 
+      // JSX allows embedding literally ANY expression in `{}`!
+      function NumberListWithInlineMapListItem(props) {
+        const numbers = props.numbers;
+        return (
+          <ul>
+            {numbers.map(num => (
+              <ListItem key={num.toString()} value={num} />
+            ))}
+          </ul>
+        );
+      }
+
       const numbers = [3, 5, 7, 9, 11];
       ReactDOM.render(
-        <NumberList numbers={numbers} />,
+        <div>
+          <NumberList numbers={numbers} />
+          <hr />
+          <NumberListWithInlineMapListItem numbers={numbers} />
+        </div>,
         document.getElementById('root')
       );
     </script>
