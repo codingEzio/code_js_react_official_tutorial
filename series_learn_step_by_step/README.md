@@ -6,6 +6,13 @@
 
 -
 
+### Tutorials
+
+- _React_
+  - [Learning concepts step by step (tutorial)](https://reactjs.org/docs/hello-world.html)
+- _Formik_
+  - The [short](https://jaredpalmer.com/formik/docs/overview) one, the [longer](https://jaredpalmer.com/formik/docs/tutorial) one, and related [_validation library_ <small>(↪️repo)</small>](https://github.com/jquense/yup).
+
 ### References
 
 - [`Event.target` - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Event/target)
@@ -24,4 +31,3 @@
 - [Why we need to bind event handlers in Class Components in React](https://www.freecodecamp.org/news/this-is-why-we-need-to-bind-event-handlers-in-class-components-in-react-f7ea1a6f93eb/)
 - [Understanding JavaScript `this` keyword <small>(Context)</small>](https://medium.com/datadriveninvestor/javascript-context-this-keyword-9a78a19d5786)
 - [Placeholder Images <small>(for every case)</small>](http://lorempixel.com/)
-- [Learning concepts step by step (tutorial)](https://reactjs.org/docs/hello-world.html)
