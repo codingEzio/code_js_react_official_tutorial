@@ -8,6 +8,10 @@
 
 ### References
 
+- [React JSX: selecting “selected” on selected `<select>` option <small>(`value` itself _mark_ the item as `selected`)</small>](https://stackoverflow.com/a/48051160)
+- [Warning: Use the 'defaultValue' or 'value' props on `<select>` instead of setting 'selected' on `<option>`](https://stackoverflow.com/a/44787318)
+- [React ignores `for` attribute of the `<label>` element](https://stackoverflow.com/a/22752418)
+- [React JSX: How to set props to `placeholder` attribute](https://stackoverflow.com/a/54580444)
 - [Why use `<label>` ?](https://stackoverflow.com/questions/7636502/why-use-label)
 - [HTML `<label>` Tag - w3schools](https://www.w3schools.com/tags/tag_label.asp)
 - [Chaining array and string methods in JavaScript](https://stackoverflow.com/questions/53080170/chaining-array-and-string-methods-in-javascript)
