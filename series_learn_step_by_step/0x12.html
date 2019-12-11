@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Yello #12</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <hr />
+    <label for="fruits">Fruits:</label>
+    <select id="fruits">
+      <option value="grapefruit" selected>Grapefruit</option>
+      <option value="coconut">Coconut</option>
+      <option value="mango">Mango</option>
+      <option value="lime">Lime</option>
+    </select>
+
+    <script type="text/babel">
+      class FruitsForm extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            // pass
+          };
+          this.handleChange = this.handleChange.bind(this);
+          this.handleSubmit = this.handleSubmit.bind(this);
+        }
+
+        handleChange(event){
+
+        }
+
+        handleSubmit(event){
+
+        }
+
+        render() {
+          return (
+            // pass
+          )
+        }
+      }
+
+      ReactDOM.render(<FruitsForm />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
