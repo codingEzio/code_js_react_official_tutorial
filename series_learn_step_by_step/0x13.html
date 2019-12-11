@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Yello #13</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      /* ===== Handling multiple controlled elements ===== */
+      class Reservation extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            isGoing: true,
+            numberOfGuests: 20,
+          };
+          this.handleInputChange = this.handleInputChange.bind(this);
+        }
+
+        handleInputChange(event) {
+          // Get the elem triggers the event, i.e. [object HTMLInputElement]
+          const target = event.target;
+          // Get the specfic element which marked by our `name` attribute
+          const name = target.name;
+
+          // Give the elements a initial value based on their TYPEs.
+          // ~ For a checkbox,  it's "checked or not",  i.e. on/off
+          // ~ For a number,    it's numbers,           e.g. 20/21 ...
+          const value =
+            target.type === 'checkbox'
+              ? target.checked
+              : target.value;
+
+          // The name (key) is still a single string, it's either 'isGoing'
+          // or 'numberOfGuests'. It's either 'on/off' for checkbox, or the
+          // numbers for 'number' <input> tag.
+          this.setState({
+            [name]: value,
+          });
+        }
+
+        render() {
+          return (
+            <form>
+              <label>
+                Is going:
+                <input
+                  type="checkbox"
+                  name="isGoing"
+                  checked={this.state.isGoing}
+                  onChange={this.handleInputChange}
+                />
+              </label>
+              <br />
+              <label>
+                Number of guests:
+                <input
+                  type="number"
+                  name="numberOfGuests"
+                  value={this.state.numberOfGuests}
+                  onChange={this.handleInputChange}
+                />
+              </label>
+            </form>
+          );
+        }
+      }
+
+      ReactDOM.render(
+        <Reservation />,
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>
