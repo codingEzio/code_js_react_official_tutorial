@@ -42,7 +42,13 @@
         }
 
         handleChange(event) {
-          this.setState({ value: event.target.value });
+          event.target.value = event.target.value
+            .trimLeft()
+            .toLowerCase();
+
+          this.setState({
+            value: event.target.value,
+          });
         }
         handleSubmit(event) {
           if (this.state.value) {
