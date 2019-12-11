@@ -25,6 +25,28 @@
         }
       }
 
+      function toCelsius(fahrenheit) {
+        return ((fahrenheit - 32) * 5) / 9;
+      }
+      function toFahrenheit(celsius) {
+        return (celsius * 9) / 5 + 32;
+      }
+
+      function tryConvert(temperature, convert) {
+        // Basic parsing & error handling
+        const input = parseFloat(temperature);
+        if (Number.isNaN(input)) {
+          return '';
+        }
+
+        // toCelsius or toFahrenheit
+        const output = convert(output);
+        // Similar to `round(NUM, 3)` in Python, since JS doesn't have one
+        const rounded = Math.round(output * 1000) / 1000;
+
+        return round.toString();
+      }
+
       const scaleNames = {
         c: 'Celsius',
         f: 'Fahrenheit',
