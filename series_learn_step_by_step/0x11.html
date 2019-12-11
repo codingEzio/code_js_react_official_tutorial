@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Yello #11</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <!-- In React, content inside here was managed by `value` property. -->
+    <!-- Also, you might've noticed we're using a `label` tag, in short,
+         when you click on the label, the focus goes to the related input. -->
+    <hr />
+    <textarea cols="10" rows="5">
+      Hello there, this is some text in a text area.
+    </textarea>
+
+    <script type="text/babel">
+      class EssayForm extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            value: '',
+          };
+          this.placeholder = 'You can write something here.';
+          this.handleChange = this.handleChange.bind(this);
+          this.handleSubmit = this.handleSubmit.bind(this);
+        }
+
+        handleChange(event) {
+          this.setState({
+            value: event.target.value,
+          });
+        }
+
+        handleSubmit(event) {
+          alert(`Texts were submitted: ${this.state.value}`);
+          event.preventDefault();
+        }
+
+        render() {
+          return (
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                Essay:
+                <textarea
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  placeholder={this.placeholder}
+                />
+              </label>
+              <input type="submit" value="SUBMIT" />
+            </form>
+          );
+        }
+      }
+
+      ReactDOM.render(<EssayForm />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
