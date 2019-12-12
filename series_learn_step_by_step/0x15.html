@@ -20,7 +20,7 @@
     <script type="text/babel">
       function FancyBorder(props) {
         // The `{props.children}` serves as a placeholder.
-        // It shares the same concept/feature as <slot> in Vue.js.
+        // It's kinda like <slot> in Vue.js, but way more powerful.
         return (
           <div className={'FancyBorder FancyBorder-' + props.color}>
             {props.children}
@@ -38,8 +38,29 @@
         );
       }
 
+      // You can directly pass components into 'props' like other data,
+      // since it's just objects.
+      function SplitPane(props) {
+        return (
+          <div>
+            <div>{props.title}</div>
+            <div>{props.content}</div>
+          </div>
+        );
+      }
+      function Title(props) {
+        return <h1>Hello</h1>;
+      }
+      function Content(props) {
+        return <p>This is Tom.</p>;
+      }
+
       ReactDOM.render(
-        <WelcomeDialog />,
+        <div>
+          <SplitPane title={<Title />} content={<Content />} />
+          <hr />
+          <WelcomeDialog />
+        </div>,
         document.getElementById('root')
       );
     </script>
