@@ -40,11 +40,11 @@
         }
 
         // toCelsius or toFahrenheit
-        const output = convert(output);
+        const output = convert(input);
         // Similar to `round(NUM, 3)` in Python, since JS doesn't have one
         const rounded = Math.round(output * 1000) / 1000;
 
-        return round.toString();
+        return rounded.toString();
       }
 
       const scaleNames = {
