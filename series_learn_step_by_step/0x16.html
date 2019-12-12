@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./css/css_0x15.css" />
+    <title>Yello #16</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      // The same component from '0x15.html'
+      function FancyBorder(props) {
+        return (
+          <div className={'FancyBorder FancyBorder-' + props.color}>
+            {props.children}
+          </div>
+        );
+      }
+
+      // The same component from '0x15.html' (with a little modification)
+      function Dialog(props) {
+        return (
+          <FancyBorder color={'black'}>
+            <h1 className="Dialog-title">{props.title}</h1>
+            <p className="Dialog-message">{props.message}</p>
+            {props.children}
+          </FancyBorder>
+        );
+      }
+
+      class SignUpDialog extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { login: '' };
+          this.handleChange = this.handleChange.bind(this);
+          this.handleSignUp = this.handleSignUp.bind(this);
+        }
+
+        handleChange(event) {
+          this.setState({
+            login: event.target.value,
+          });
+        }
+        handleSignUp() {
+          alert(`Welcome aboard, ${this.state.login} 👨‍✈️`);
+        }
+
+        render() {
+          return (
+            <Dialog
+              title="Mars Exploration Program"
+              message="Register now!"
+            >
+              <input
+                type="text"
+                value={this.state.login}
+                onChange={this.handleChange}
+              />
+              <button onClick={this.handleSignUp}>SIGN ME UP</button>
+            </Dialog>
+          );
+        }
+      }
+
+      ReactDOM.render(
+        <SignUpDialog />,
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>
