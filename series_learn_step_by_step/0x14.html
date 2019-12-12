@@ -94,12 +94,57 @@
       class Calculator extends React.Component {
         // The answer of where you put the 'state' should depend on
         // your actual need. e.g. sharing state, parent -> children.
+        constructor(props) {
+          super(props);
+          this.state = { temperature: '', scale: 'c' };
+          this.handleFahrenheitChange = this.handleFahrenheitChange.bind(
+            this
+          );
+          this.handleCelsiusChange = this.handleCelsiusChange.bind(
+            this
+          );
+        }
+
+        handleFahrenheitChange(temperature) {
+          this.setState({
+            scale: 'f',
+            temperature,
+          });
+        }
+
+        handleCelsiusChange(temperature) {
+          this.setState({
+            scale: 'c',
+            temperature,
+          });
+        }
 
         render() {
+          const scale = this.state.scale;
+          const temperature = this.state.temperature;
+
+          const celsius =
+            scale === 'f'
+              ? tryConvert(temperature, toCelsius)
+              : temperature;
+          const fahrenheit =
+            scale === 'c'
+              ? tryConvert(temperature, toFahrenheit)
+              : temperature;
+
           return (
             <div>
-              <TemperatureInput scale="c" />
-              <TemperatureInput scale="f" />
+              <TemperatureInput
+                scale="c"
+                temperature={celsius}
+                onTemperatureChange={this.handleCelsiusChange}
+              />
+              <TemperatureInput
+                scale="f"
+                temperature={fahrenheit}
+                onTemperatureChange={this.handleFahrenheitChange}
+              />
+              <BoilingVerdict celsius={parseFloat(celsius)} />
             </div>
           );
         }
