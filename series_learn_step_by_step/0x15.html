@@ -27,15 +27,18 @@
           </div>
         );
       }
-      function WelcomeDialog(props) {
+
+      // A "generic" dialog
+      function Dialog(props) {
         return (
           <FancyBorder color={'black'}>
-            <h1 className="Dialog-title">Welcome!</h1>
-            <p className="Dialog-message">
-              What a nice day, isn't it!
-            </p>
+            <h1 className="Dialog-title">{props.title}</h1>
+            <p className="Dialog-message">{props.content}</p>
           </FancyBorder>
         );
+      }
+      function GoodbyeDialog(props) {
+        return <Dialog title="Goodbye" content="We will miss you!" />;
       }
 
       // You can directly pass components into 'props' like other data,
@@ -59,7 +62,7 @@
         <div>
           <SplitPane title={<Title />} content={<Content />} />
           <hr />
-          <WelcomeDialog />
+          <GoodbyeDialog />
         </div>,
         document.getElementById('root')
       );
