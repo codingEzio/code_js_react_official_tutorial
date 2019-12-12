@@ -53,22 +53,28 @@
       };
 
       class TemperatureInput extends React.Component {
+        // Currently, `TemperatureInput` keeps the state independently,
+        // it's nice, however we wanna these two "inputs" to be in sync
+        // with each other. So now we need to move it somewhere else :)
         constructor(props) {
           super(props);
-          this.state = {
-            temperature: '',
-          };
           this.handleChange = this.handleChange.bind(this);
         }
 
         handleChange(event) {
-          this.setState({
-            temperature: event.target.value,
-          });
+          // We also need to make changes here, here's some facts:
+          // - it's no longer 'state' (you can modify it by 'setState')
+          // - it's lives in 'props' now ('props' CANNOT be modified!)
+          // Also, the method 'onXxxxChange' (from parent component)
+          // has no special meanings, it's just a convention in React.
+          this.props.onTemperatureChange(event.target.value);
         }
 
         render() {
-          const temperature = this.state.temperature;
+          // BEFORE: lives in 'state', managed by 'TemperatureInput'
+          // AFTER : turns into 'props' passed from parent component
+          const temperature = this.props.temperature;
+
           const scale = this.props.scale;
           return (
             <fieldset>
@@ -86,6 +92,9 @@
       }
 
       class Calculator extends React.Component {
+        // The answer of where you put the 'state' should depend on
+        // your actual need. e.g. sharing state, parent -> children.
+
         render() {
           return (
             <div>
