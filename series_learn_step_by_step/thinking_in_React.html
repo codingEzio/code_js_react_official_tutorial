@@ -10,7 +10,7 @@
     <title>Thinking in React</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="container"></div>
 
     <script src="https://unpkg.com/react/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
@@ -21,9 +21,7 @@
         // pass
 
         render() {
-          return (
-            // pass
-          )
+          return;
         }
       }
 
@@ -31,9 +29,7 @@
         // pass
 
         render() {
-          return (
-            // pass
-          )
+          return;
         }
       }
 
@@ -41,9 +37,7 @@
         // pass
 
         render() {
-          return (
-            // pass
-          )
+          return;
         }
       }
 
@@ -52,8 +46,13 @@
 
         render() {
           return (
-            // pass
-          )
+            <form>
+              <input type="text" placeholder="Search ..." />
+              <p>
+                <input type="checkbox" /> Only show products at stock
+              </p>
+            </form>
+          );
         }
       }
 
@@ -62,12 +61,15 @@
 
         render() {
           return (
-            // pass
-          )
+            <div>
+              <SearchBar />
+              <ProductTable products={this.props.products} />
+            </div>
+          );
         }
       }
 
-      const productData = [
+      const Products = [
         {
           category: 'Sporting Goods',
           price: '$49.99',
@@ -107,8 +109,8 @@
       ];
 
       ReactDOM.render(
-        <FilterableProductTable />,
-        document.getElementById('root')
+        <FilterableProductTable products={Products} />,
+        document.getElementById('container')
       );
     </script>
   </body>
