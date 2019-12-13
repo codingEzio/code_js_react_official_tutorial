@@ -15,7 +15,8 @@
 
 ### References
 
-- [CodePen Snippets :: Thinking In React: Step 2](https://codepen.io/gaearon/pen/BwWzwm?editors=0010)
+- [CodePen Snippets :: Thinking In React: Step 4 <small>(end)</small>](https://codepen.io/gaearon/pen/qPrNQZ?editors=0010)
+- [CodePen Snippets :: Thinking In React: Step 2 <small>(beginning)</small>](https://codepen.io/gaearon/pen/BwWzwm?editors=0010)
 - [`Event.target` - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Event/target)
 - [`target` Event Property - w3schools](https://www.w3schools.com/jsref/event_target.asp)
 - [React JSX: selecting “selected” on selected `<select>` option <small>(`value` itself _mark_ the item as `selected`)</small>](https://stackoverflow.com/a/48051160)
