@@ -21,7 +21,12 @@
         // pass
 
         render() {
-          return;
+          const category = this.props.category;
+          return (
+            <tr>
+              <th colSpan="2">{category}</th>
+            </tr>
+          );
         }
       }
 
@@ -29,7 +34,19 @@
         // pass
 
         render() {
-          return;
+          const product = this.props.product;
+          const name = product.stocked ? (
+            product.name
+          ) : (
+            <span style={{ color: 'yellow' }}>{product.name}</span>
+          );
+
+          return (
+            <tr>
+              <td>{name}</td>
+              <td>{product.price}</td>
+            </tr>
+          );
         }
       }
 
@@ -47,10 +64,13 @@
                   key={prod.category}
                 />
               );
-            // Display the product items
-            rows.push(<ProductRow product={prod} key={prod.name} />);
+              // Display the product items
+              rows.push(
+                <ProductRow product={prod} key={prod.name} />
+              );
 
-            lastCategory = prod.category;
+              lastCategory = prod.category;
+            }
           });
 
           return (
