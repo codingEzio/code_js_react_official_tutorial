@@ -34,10 +34,36 @@
       }
 
       class ProductTable extends React.Component {
-        // pass
-
         render() {
-          return;
+          const rows = [];
+          let lastCategory = null;
+
+          this.props.products.forEach(prod => {
+            // Display the category
+            if (prod.category !== lastCategory) {
+              rows.push(
+                <ProductCategoryRow
+                  category={prod.category}
+                  key={prod.category}
+                />
+              );
+            // Display the product items
+            rows.push(<ProductRow product={prod} key={prod.name} />);
+
+            lastCategory = prod.category;
+          });
+
+          return (
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>{rows}</tbody>
+            </table>
+          );
         }
       }
 
