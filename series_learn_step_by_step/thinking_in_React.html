@@ -18,8 +18,6 @@
 
     <script type="text/babel">
       class ProductCategoryRow extends React.Component {
-        // pass
-
         render() {
           const category = this.props.category;
           return (
@@ -31,14 +29,12 @@
       }
 
       class ProductRow extends React.Component {
-        // pass
-
         render() {
           const product = this.props.product;
           const name = product.stocked ? (
             product.name
           ) : (
-            <span style={{ color: 'yellow' }}>{product.name}</span>
+            <span style={{ color: 'red' }}>{product.name}</span>
           );
 
           return (
@@ -64,13 +60,12 @@
                   key={prod.category}
                 />
               );
-              // Display the product items
-              rows.push(
-                <ProductRow product={prod} key={prod.name} />
-              );
-
-              lastCategory = prod.category;
             }
+
+            // Display the product items
+            rows.push(<ProductRow product={prod} key={prod.name} />);
+
+            lastCategory = prod.category;
           });
 
           return (
@@ -88,8 +83,6 @@
       }
 
       class SearchBar extends React.Component {
-        // pass
-
         render() {
           return (
             <form>
@@ -103,8 +96,6 @@
       }
 
       class FilterableProductTable extends React.Component {
-        // pass
-
         render() {
           return (
             <div>
