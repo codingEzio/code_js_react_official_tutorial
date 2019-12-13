@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Thinking in React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      class ProductCategoryRow extends React.Component {
+        // pass
+
+        render() {
+          return (
+            // pass
+          )
+        }
+      }
+
+      class ProductRow extends React.Component {
+        // pass
+
+        render() {
+          return (
+            // pass
+          )
+        }
+      }
+
+      class ProductTable extends React.Component {
+        // pass
+
+        render() {
+          return (
+            // pass
+          )
+        }
+      }
+
+      class SearchBar extends React.Component {
+        // pass
+
+        render() {
+          return (
+            // pass
+          )
+        }
+      }
+
+      class FilterableProductTable extends React.Component {
+        // pass
+
+        render() {
+          return (
+            // pass
+          )
+        }
+      }
+
+      const productData = [
+        {
+          category: 'Sporting Goods',
+          price: '$49.99',
+          stocked: true,
+          name: 'Football',
+        },
+        {
+          category: 'Sporting Goods',
+          price: '$9.99',
+          stocked: true,
+          name: 'Baseball',
+        },
+        {
+          category: 'Sporting Goods',
+          price: '$29.99',
+          stocked: false,
+          name: 'Basketball',
+        },
+        {
+          category: 'Electronics',
+          price: '$99.99',
+          stocked: true,
+          name: 'iPod Touch',
+        },
+        {
+          category: 'Electronics',
+          price: '$399.99',
+          stocked: false,
+          name: 'iPhone 5',
+        },
+        {
+          category: 'Electronics',
+          price: '$199.99',
+          stocked: true,
+          name: 'Nexus 7',
+        },
+      ];
+
+      ReactDOM.render(
+        <FilterableProductTable />,
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>
